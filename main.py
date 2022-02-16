@@ -1,6 +1,5 @@
 import vgamepad as vg
 import time
-import pygame
 from inputs import get_gamepad
 import math
 import threading
@@ -36,9 +35,12 @@ class XboxController(object):
                 if event.code == 'ABS_RZ':
                     self.RightTrigger = event.state / XboxController.MAX_TRIG_VAL # normalize between 0 and 1
 
-read(self)
 
-if autopilotas == 0:
-    gamepad.right_trigger_float()
-else:
-    gamepad.right_trigger_float(throttle)
+joystick = XboxController()
+while True:
+    rt = joystick.read()
+    print(rt)
+    if autopilotas == 0:
+        gamepad.right_trigger_float()
+    else:
+        gamepad.right_trigger_float(throttle)
